@@ -8,13 +8,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{url('/admin/order-list')}}">
+                <a class="nav-link" href="{{route('admin.order.list')}}">
                     <span data-feather="file"></span>
                     Orders
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('admin.product.list')}}">
                     <span data-feather="file"></span>
                     Products
                 </a>

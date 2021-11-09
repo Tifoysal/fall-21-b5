@@ -2,7 +2,7 @@
 
 
 @section('content')
-
+<h1>Order List</h1>
 <table class="table">
     <thead>
     <tr>

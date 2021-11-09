@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.master');
+    return redirect()->route('home');
 });
 
-
-Route::get('admin/order-list',[OrderController::class,'orderList']);
+Route::group(['prefix'=>'admin'],function (){
+    Route::get('/', function () {
+        return view('admin.pages.home');
+    })->name('home');
+    Route::get('order/list',[OrderController::class,'orderList'])->name('admin.order.list');
+    Route::get('product-list',[ProductController::class,'productList'])->name('admin.product.list');
+    Route::get('product/create',[ProductController::class,'productCreateForm']);
+});
 
 
