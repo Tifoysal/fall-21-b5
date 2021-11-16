@@ -19,6 +19,13 @@
                     Products
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.employee.list')}}">
+                    <span data-feather="file"></span>
+                    Employee
+                </a>
+            </li>
         </ul>
 
     </div>
