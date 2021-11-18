@@ -6,34 +6,27 @@
 
     <a href="{{url('admin/product/create')}}" class="btn btn-success">Create new product</a>
 
-
     <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">name</th>
+            <th scope="col">price</th>
+            <th scope="col">details</th>
+            <th scope="col">category</th>
+            
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+            @foreach ($products as $key=>$product)
+                <tr>
+                    <th>{{$key+1}}</th>
+                    <td>{{$product->name}}</td>
+                    <td>{{$product->price}}</td>
+                    <td>{{$product->details}}</td>
+                    <td>{{$product->category->name}}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection

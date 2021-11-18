@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,11 @@ Route::group(['prefix'=>'admin'],function (){
     Route::get('product-list',[ProductController::class,'productList'])->name('admin.product.list');
     Route::get('product/create',[ProductController::class,'productCreateForm']);
     Route::post('product/store',[ProductController::class,'productStore'])->name('admin.product.store');
+
+    // category
+    Route::get('/product/category',[CategoryController::class,'categoryList'])->name('admin.category.list');
+    Route::get('/category/create',[CategoryController::class,'categoryCreate'])->name('admin.category.form');
+    Route::post('/category/add',[CategoryController::class,'add'])->name('category.add');
     
     
     // employee
