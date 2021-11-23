@@ -12,15 +12,15 @@ class ProductController extends Controller
     public function productList()
     {
         $products = Product::with('category')->get();
-        // dd($products);
+
         return view('admin.pages.product-list',compact('products'));
     }
 
 
     public function productCreateForm()
     {
-        $categories = Category::all(); 
-        
+        $categories = Category::all();
+
         return view('admin.pages.create-product',compact('categories'));
     }
 
@@ -28,7 +28,7 @@ class ProductController extends Controller
         //  dd($request->all());
 
         Product::create([
-            // field name from db || field name from form 
+            // field name from db || field name from form
 
             'name'=>$request->name,
             'price'=>$request->price,
@@ -36,7 +36,7 @@ class ProductController extends Controller
             'details'=>$request->details
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Product created successfully.');
 
     }
 }

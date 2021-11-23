@@ -5,6 +5,11 @@
 
 <h1>Create new category</h1>
 
+@if(session()->has('success'))
+<p class="alert alert-success">
+    {{session()->get('success')}}
+</p>
+@endif
 
 <form action="{{route('category.add')}}" method="POST">
     @csrf
@@ -14,7 +19,7 @@
 
     </div>
 
-    
+
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Category details</label>

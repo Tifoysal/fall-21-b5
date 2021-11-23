@@ -14,11 +14,13 @@
             <th scope="col">price</th>
             <th scope="col">details</th>
             <th scope="col">category</th>
-            
+
         </tr>
         </thead>
+
         <tbody>
             @foreach ($products as $key=>$product)
+
                 <tr>
                     <th>{{$key+1}}</th>
                     <td>{{$product->name}}</td>

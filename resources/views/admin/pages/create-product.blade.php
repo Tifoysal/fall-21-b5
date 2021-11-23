@@ -5,6 +5,11 @@
 
 <h1>Create new product</h1>
 
+@if(session()->has('success'))
+    <p class="alert alert-success">
+        {{session()->get('success')}}
+    </p>
+@endif
 
 <form action="{{route('admin.product.store')}}" method="POST">
     @csrf
@@ -23,9 +28,9 @@
     <label for="exampleFormControlSelect1">Product Category</label>
     <select name="category" class="form-control" id="exampleFormControlSelect1">
         @foreach ($categories as $category)
-           <option value="{{$category->id}}">{{$category->name}}</option> 
+           <option value="{{$category->id}}">{{$category->name}}</option>
         @endforeach
-      
+
     </select>
   </div>
 

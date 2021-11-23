@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function categoryList(){
-        return view('admin.pages.category-list');
+    $categories=Category::all();
+//    dd($categories);
+    return view('admin.pages.category-list',compact('categories'));
     }
 
     public function categoryCreate(){
@@ -16,11 +18,12 @@ class CategoryController extends Controller
     }
 
     public function add(Request $request){
-        // dd($request->all());
+//         dd($request->all());
+//        table field name|| input field name
         Category::create([
             'name'=>$request->name,
             'details'=>$request->details
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('success','Category Created Successfully.');
     }
 }
