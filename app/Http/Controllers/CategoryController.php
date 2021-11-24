@@ -18,7 +18,14 @@ class CategoryController extends Controller
     }
 
     public function add(Request $request){
-//         dd($request->all());
+        // dd($request->all());
+
+        $request->validate([
+            'name'=>'required| min:11|max:11',
+            'details'=>'required'
+        ]);
+       
+
 //        table field name|| input field name
         Category::create([
             'name'=>$request->name,
