@@ -11,7 +11,7 @@
     </p>
 @endif
 
-<form action="{{route('admin.product.store')}}" method="POST">
+<form action="{{route('admin.product.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Product Name</label>
@@ -41,7 +41,7 @@
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Product Image</label>
-        <input  type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input name="product_image" type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
     </div>
 
     <button type="submit" class="btn btn-success">Submit</button>

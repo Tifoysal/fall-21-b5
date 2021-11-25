@@ -25,15 +25,29 @@ class ProductController extends Controller
     }
 
     public function productStore(Request $request){
-        //  dd($request->all());
+
+
+
+                $image_name=null;
+//              step 1: check image exist in this request.
+                 if($request->hasFile('product_image'))
+                 {
+                     // step 2: generate file name
+                     $image_name=date('Ymdhis') .'.'. $request->file('product_image')->getClientOriginalExtension();
+
+                     //step 3 : store into project directory
+
+                     $request->file('product_image')->storeAs('/products',$image_name);
+
+                 }
 
         Product::create([
             // field name from db || field name from form
-
             'name'=>$request->name,
             'price'=>$request->price,
             'category_id'=>$request->category,
-            'details'=>$request->details
+            'details'=>$request->details,
+            'image'=>$image_name,
         ]);
 
         return redirect()->back()->with('success','Product created successfully.');
