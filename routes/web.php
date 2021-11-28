@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Website\HomeController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('home');
-});
+//Route::get('/', function () {
+//    $products=Product::all();
+//    return view('website.pages.home',compact('products'));
+//});
+
+Route::get('/',[HomeController::class,'home']);
+
 
 Route::group(['prefix'=>'admin'],function (){
     Route::get('/', function () {
@@ -34,12 +40,12 @@ Route::group(['prefix'=>'admin'],function (){
     Route::get('/product/category',[CategoryController::class,'categoryList'])->name('admin.category.list');
     Route::get('/category/create',[CategoryController::class,'categoryCreate'])->name('admin.category.form');
     Route::post('/category/add',[CategoryController::class,'add'])->name('category.add');
-    
-    
+
+
     // employee
     Route::get('/employee/list',[EmployeeController::class,'list'])->name('admin.employee.list');
-    Route::get('/employee/form',[EmployeeController::class,'create'])->name('admin.employee.form');  
-    Route::post('/employee/add',[EmployeeController::class,'add'])->name('admin.employee.add'); 
+    Route::get('/employee/form',[EmployeeController::class,'create'])->name('admin.employee.form');
+    Route::post('/employee/add',[EmployeeController::class,'add'])->name('admin.employee.add');
 });
 
 
