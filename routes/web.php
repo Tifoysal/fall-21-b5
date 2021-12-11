@@ -32,11 +32,16 @@ Route::group(['prefix'=>'admin'],function (){
         return view('admin.pages.home');
     })->name('home');
     Route::get('order/list',[OrderController::class,'orderList'])->name('admin.order.list');
+
+    //product routes
     Route::get('product-list',[ProductController::class,'productList'])->name('admin.product.list');
     Route::get('product/create',[ProductController::class,'productCreateForm']);
     Route::post('product/store',[ProductController::class,'productStore'])->name('admin.product.store');
+    Route::get('product/view/{product_id}',[ProductController::class,'productDetails'])->name('admin.product.details');
+    Route::get('product/delete/{product_id}',[ProductController::class,'productDelete'])->name('admin.product.delete');
 
-    // category
+
+    // category routes
     Route::get('/product/category',[CategoryController::class,'categoryList'])->name('admin.category.list');
     Route::get('/category/create',[CategoryController::class,'categoryCreate'])->name('admin.category.form');
     Route::post('/category/add',[CategoryController::class,'add'])->name('category.add');

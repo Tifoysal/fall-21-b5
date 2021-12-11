@@ -3,7 +3,11 @@
 
 @section('content')
     <h1>Product List</h1>
-
+    @if(session()->has('success'))
+        <p class="alert alert-success">
+            {{session()->get('success')}}
+        </p>
+    @endif
     <a href="{{url('admin/product/create')}}" class="btn btn-success">Create new product</a>
 
     <table class="table">
@@ -15,6 +19,7 @@
             <th scope="col">Price</th>
             <th scope="col">Details</th>
             <th scope="col">Category</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
 
@@ -26,11 +31,16 @@
                         <img style="border-radius: 4px;" width="100px;" src=" {{url('/uploads/products/'.$product->image)}}" alt="product">
 
                     </th>
-                    <td>{{$product->name}}</td>
+                    <td>{{$product->name}} "---" {{$product->id}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->details}}</td>
                     <td>{{$product->category->name}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{route('admin.product.details',$product->id)}}">View</a>
+                        <a class="btn btn-danger" href="{{route('admin.product.delete',$product->id)}}">Delete</a>
+                    </td>
                 </tr>
+
             @endforeach
         </tbody>
     </table>

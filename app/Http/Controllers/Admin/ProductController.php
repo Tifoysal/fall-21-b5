@@ -53,4 +53,20 @@ class ProductController extends Controller
         return redirect()->back()->with('success','Product created successfully.');
 
     }
+
+    public function productDetails($product_id)
+    {
+
+//        collection= get(), all()====== read with loop (foreach)
+//       object= first(), find(), findOrFail(),======direct
+      $product=Product::find($product_id);
+//      $product=Product::where('id',$product_id)->first();
+        return view('admin.pages.product-details',compact('product'));
+    }
+
+    public function productDelete($product_id)
+    {
+       Product::find($product_id)->delete();
+       return redirect()->back()->with('success','Product Deleted.');
+    }
 }
