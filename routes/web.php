@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Website\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,10 @@ use Illuminate\Support\Facades\Route;
 //    return view('website.pages.home',compact('products'));
 //});
 
-Route::get('/',[HomeController::class,'home']);
+Route::get('/',[HomeController::class,'home'])->name('website');
+Route::post('/registration',[UserController::class,'registration'])->name('user.registration');
+Route::post('/login',[UserController::class,'login'])->name('user.login');
+Route::get('/logout',[UserController::class,'logout'])->name('user.logout');
 
 
 Route::group(['prefix'=>'admin'],function (){
