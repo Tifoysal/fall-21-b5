@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\UserController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -32,9 +33,17 @@ Route::get('/logout',[UserController::class,'logout'])->name('user.logout');
 
 
 Route::group(['prefix'=>'admin'],function (){
+
+    Route::get('/login',[AdminUserController::class,'login'])->name('admin.login');
+    Route::post('/login',[AdminUserController::class,'doLogin'])->name('admin.doLogin');
+
+    Route::group(['middleware'=>'auth'],function (){
     Route::get('/', function () {
         return view('admin.pages.home');
     })->name('home');
+
+    Route::get('/logout',[AdminUserController::class,'logout'])->name('admin.logout');
+
     Route::get('order/list',[OrderController::class,'orderList'])->name('admin.order.list');
 
     //product routes
@@ -55,6 +64,7 @@ Route::group(['prefix'=>'admin'],function (){
     Route::get('/employee/list',[EmployeeController::class,'list'])->name('admin.employee.list');
     Route::get('/employee/form',[EmployeeController::class,'create'])->name('admin.employee.form');
     Route::post('/employee/add',[EmployeeController::class,'add'])->name('admin.employee.add');
+});
 });
 
 
