@@ -10,14 +10,12 @@ class UserController extends Controller
 {
     public function login()
     {
-
        return view('admin.login');
-
     }
+
 
     public function doLogin(Request $request)
     {
-
 
         $userInfo=$request->except('_token');
 //        $credentials['email']=$request->user_email;
@@ -29,7 +27,7 @@ class UserController extends Controller
         if(Auth::attempt($userInfo)){
             return redirect()->route('home')->with('message','Login successful.');
         }
-        return redirect()->back()->withErrors('Invalid user credentials');
+        return redirect()->back()->with('error','Invalid user credentials');
 
     }
 

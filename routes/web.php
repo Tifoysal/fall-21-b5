@@ -32,15 +32,13 @@ Route::post('/login',[UserController::class,'login'])->name('user.login');
 Route::get('/logout',[UserController::class,'logout'])->name('user.logout');
 
 
-Route::group(['prefix'=>'admin'],function (){
+Route::get('/admin/login',[AdminUserController::class,'login'])->name('admin.login');
+Route::post('/admin/do-login',[AdminUserController::class,'doLogin'])->name('admin.doLogin');
 
-    Route::get('/login',[AdminUserController::class,'login'])->name('admin.login');
-    Route::post('/login',[AdminUserController::class,'doLogin'])->name('admin.doLogin');
-
-    Route::group(['middleware'=>'auth'],function (){
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function (){
     Route::get('/', function () {
-        return view('admin.pages.home');
-    })->name('home');
+            return view('admin.pages.home');
+        })->name('home');
 
     Route::get('/logout',[AdminUserController::class,'logout'])->name('admin.logout');
 
@@ -65,6 +63,4 @@ Route::group(['prefix'=>'admin'],function (){
     Route::get('/employee/form',[EmployeeController::class,'create'])->name('admin.employee.form');
     Route::post('/employee/add',[EmployeeController::class,'add'])->name('admin.employee.add');
 });
-});
-
 

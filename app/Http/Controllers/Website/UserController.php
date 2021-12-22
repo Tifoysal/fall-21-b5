@@ -13,10 +13,10 @@ class UserController extends Controller
     {
 //        dd($request->all());
         User::create([
-           'name'=>$request->user_name,
-           'email'=>$request->user_email,
-           'password'=>bcrypt($request->user_password),
-           'mobile'=>$request->user_mobile,
+            'name'=>$request->user_name,
+            'email'=>$request->user_email,
+            'password'=>bcrypt($request->user_password),
+            'mobile'=>$request->user_mobile,
         ]);
 
         return redirect()->back()->with('message','Registration successful.');
@@ -46,6 +46,6 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
-     return redirect()->route('website')->with('message','Logging out.');
+        return redirect()->route('website')->with('message','Logging out.');
     }
 }
