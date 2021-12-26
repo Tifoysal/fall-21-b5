@@ -31,12 +31,15 @@
                         <img style="border-radius: 4px;" width="100px;" src=" {{url('/uploads/products/'.$product->image)}}" alt="product">
 
                     </th>
-                    <td>{{$product->name}} "---" {{$product->id}}</td>
+                    <td>
+                        <a class="" href="{{route('admin.product.details',$product->id)}}"> {{$product->name}}</a>
+                    </td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->details}}</td>
                     <td>{{$product->category->name}}</td>
                     <td>
                         <a class="btn btn-primary" href="{{route('admin.product.details',$product->id)}}">View</a>
+                        <a class="btn btn-info" href="{{route('admin.product.edit',$product->id)}}">Edit</a>
                         <a class="btn btn-danger" href="{{route('admin.product.delete',$product->id)}}">Delete</a>
                     </td>
                 </tr>

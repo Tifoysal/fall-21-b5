@@ -49,6 +49,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function (){
     Route::get('product/create',[ProductController::class,'productCreateForm']);
     Route::post('product/store',[ProductController::class,'productStore'])->name('admin.product.store');
     Route::get('product/view/{product_id}',[ProductController::class,'productDetails'])->name('admin.product.details');
+    Route::get('product/edit/{product_id}',[ProductController::class,'productEdit'])->name('admin.product.edit');
+    Route::put('product/update/{product_id}',[ProductController::class,'productUpdate'])->name('admin.product.update');
     Route::get('product/delete/{product_id}',[ProductController::class,'productDelete'])->name('admin.product.delete');
 
 

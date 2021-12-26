@@ -21,10 +21,10 @@ class CategoryController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'name'=>'required| min:11|max:11',
+            'name'=>'required',
             'details'=>'required'
         ]);
-       
+
 
 //        table field name|| input field name
         Category::create([

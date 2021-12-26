@@ -69,4 +69,54 @@ class ProductController extends Controller
        Product::find($product_id)->delete();
        return redirect()->back()->with('success','Product Deleted.');
     }
+
+    public function productEdit($id)
+    {
+
+        $product=Product::find($id);
+//        $product=Product::where('user_id',$id)->first();
+
+//        dd($product);
+        $all_categories=Category::all();
+//        dd($all_categories);
+        return view('admin.pages.edit-product',compact('all_categories','product'));
+
+    }
+
+    public function productUpdate(Request $request,$id)
+    {
+
+
+        $product=Product::find($id);
+
+//        Product::where('column','value')->udpate([
+//            'column'=>'request form field name'
+//        ]);
+
+        $image_name=$product->image;
+//              step 1: check image exist in this request.
+        if($request->hasFile('product_image'))
+        {
+            // step 2: generate file name
+            $image_name=date('Ymdhis') .'.'. $request->file('product_image')->getClientOriginalExtension();
+
+            //step 3 : store into project directory
+
+            $request->file('product_image')->storeAs('/products',$image_name);
+
+        }
+
+
+        $product->update([
+            // field name from db || field name from form
+            'name'=>$request->name,
+            'price'=>$request->price,
+            'category_id'=>$request->category,
+            'details'=>$request->details,
+            'image'=>$image_name,
+
+        ]);
+        return redirect()->route('admin.product.list')->with('success','Product Updated Successfully.');
+
+    }
 }
