@@ -3,6 +3,19 @@
 
 @section('content')
 <h1>Order List</h1>
+<div>
+    <form action="{{route('admin.product.list')}}">
+        <div class="input-group rounded mt-3 mb-2">
+            <input type="date" class="form-control rounded" name="from_date" placeholder="Search" aria-label="Search"
+                   aria-describedby="search-addon" />
+            <input type="date" class="form-control rounded" name="to_date" placeholder="Search" aria-label="Search"
+                   aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+    <button type="submit">submit</button>
+  </span>
+        </div>
+    </form>
+</div>
 <table class="table">
     <thead>
     <tr>

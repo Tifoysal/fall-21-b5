@@ -9,8 +9,14 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function productList()
+    public function productList(Request $request)
     {
+        $search = $request->query('search');
+        if($search){
+            $products = Product::with('category')->where('name','Like', '%'.$search.'%')
+                ->orWhere('price','like','%'.$search.'%')->get();
+            return view('admin.pages.product-list',compact('products'));
+        }
         $products = Product::with('category')->get();
 
         return view('admin.pages.product-list',compact('products'));
@@ -117,6 +123,5 @@ class ProductController extends Controller
 
         ]);
         return redirect()->route('admin.product.list')->with('success','Product Updated Successfully.');
-
     }
 }

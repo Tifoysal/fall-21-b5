@@ -10,6 +10,16 @@
     @endif
     <a href="{{url('admin/product/create')}}" class="btn btn-success">Create new product</a>
 
+    <form action="{{route('admin.product.list')}}">
+        <div class="input-group rounded mt-3 mb-2">
+            <input type="search" class="form-control rounded" name="search" placeholder="Search" aria-label="Search"
+                   aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+    <button type="submit">submit</button>
+  </span>
+        </div>
+    </form>
+
     <table class="table">
         <thead>
         <tr>
