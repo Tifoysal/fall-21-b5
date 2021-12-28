@@ -10,16 +10,21 @@
     @endif
     <a href="{{url('admin/product/create')}}" class="btn btn-success">Create new product</a>
 
-    <form action="{{route('admin.product.list')}}">
-        <div class="input-group rounded mt-3 mb-2">
-            <input type="search" class="form-control rounded" name="search" placeholder="Search" aria-label="Search"
-                   aria-describedby="search-addon" />
-            <span class="input-group-text border-0" id="search-addon">
-    <button type="submit">submit</button>
-  </span>
+    <form action="{{route('admin.product.list')}}" method="get">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="search" placeholder="Search here...">
         </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-success">Search</button>
+        </div>
+    </div>
     </form>
 
+    @if($key)
+    <h3>You are searching for: {{$key}}. Found {{$products->count()}} results</h3>
+    @endif
     <table class="table">
         <thead>
         <tr>

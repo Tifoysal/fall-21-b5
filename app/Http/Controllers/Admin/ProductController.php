@@ -9,20 +9,32 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function productList(Request $request)
+
+    public function productList()
     {
-        $search = $request->query('search');
-        if($search){
-            $products = Product::with('category')->where('name','Like', '%'.$search.'%')
-                ->orWhere('price','like','%'.$search.'%')->get();
-            return view('admin.pages.product-list',compact('products'));
+        $key=null;
+        if(request()->search){
+            $key=request()->search;
+            $products = Product::with('category')
+                ->where('name','LIKE','%'.$key.'%')
+                ->orWhere('price','LIKE','%'.$key.'%')
+                ->get();
+            return view('admin.pages.product-list',compact('products','key'));
         }
         $products = Product::with('category')->get();
-
-        return view('admin.pages.product-list',compact('products'));
+        return view('admin.pages.product-list',compact('products','key'));
     }
 
 
+
+
+
+//$search = $request->query('search');
+//if($search){
+//$products = Product::with('category')->where('name','Like', '%'.$search.'%')
+//->orWhere('price','like','%'.$search.'%')->get();
+//return view('admin.pages.product-list',compact('products'));
+//}
     public function productCreateForm()
     {
         $categories = Category::all();
