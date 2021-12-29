@@ -10,21 +10,24 @@
     @endif
     <a href="{{url('admin/product/create')}}" class="btn btn-success">Create new product</a>
 
-    <form action="{{route('admin.product.list')}}" method="get">
+
+    <form action="{{route('admin.product.list')}}" method="GET">
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <input type="text" class="form-control" name="search" placeholder="Search here...">
+            <input value="{{$key}}" type="text" placeholder="Search" name="search" class="form-control">
         </div>
         <div class="col-md-4">
             <button type="submit" class="btn btn-success">Search</button>
         </div>
     </div>
     </form>
-
     @if($key)
-    <h3>You are searching for: {{$key}}. Found {{$products->count()}} results</h3>
-    @endif
+    <h4>
+        Your are searching for: {{$key}}. found: {{$products->count()}}
+    </h4>
+@endif
+
     <table class="table">
         <thead>
         <tr>

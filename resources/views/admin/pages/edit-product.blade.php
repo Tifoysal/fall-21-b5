@@ -11,13 +11,15 @@
     </p>
 @endif
 
+<img style="border-radius: 4px;" width="500px;" src=" {{url('/uploads/products/'.$product->image)}}" alt="product">
+
 <form action="{{route('admin.product.update',$product->id)}}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
+    <input type="hidden" id="product_id">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Product Name</label>
         <input name="name" value="{{$product->name}}" placeholder="Enter Product Name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-
     </div>
 
     <div class="mb-3">
@@ -31,9 +33,9 @@
 
         @foreach ($all_categories as $category)
            <option
-               @if($category->id==$product->category_id)
-               selected
-               @endif
+            @if($product->category_id==$category->id)
+                selected
+            @endif
            value="{{$category->id}}">{{$category->name}}</option>
         @endforeach
 

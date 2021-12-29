@@ -103,27 +103,21 @@ class ProductController extends Controller
 
     public function productUpdate(Request $request,$id)
     {
-
-
         $product=Product::find($id);
-
 //        Product::where('column','value')->udpate([
 //            'column'=>'request form field name'
 //        ]);
-
         $image_name=$product->image;
-//              step 1: check image exist in this request.
+//      step 1: check image exist in this request.
         if($request->hasFile('product_image'))
         {
+            //unlink old image
+
             // step 2: generate file name
             $image_name=date('Ymdhis') .'.'. $request->file('product_image')->getClientOriginalExtension();
-
             //step 3 : store into project directory
-
             $request->file('product_image')->storeAs('/products',$image_name);
-
         }
-
 
         $product->update([
             // field name from db || field name from form

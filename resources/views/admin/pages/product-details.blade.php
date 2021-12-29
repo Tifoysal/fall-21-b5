@@ -15,10 +15,10 @@
         <p>Product Details: {{$product->description}}</p>
         <p>Product Status: {{$product->status}}</p>
 
-
     </div>
+    <input class="btn btn-primary" type="button" onClick="PrintDiv('divToPrint');" value="Print">
 
-        <input class="btn btn-primary" type="button" onClick="PrintDiv('divToPrint');" value="Print">
+
 
 @endsection
 
