@@ -35,7 +35,7 @@ Route::get('/logout',[UserController::class,'logout'])->name('user.logout');
 Route::get('/admin/login',[AdminUserController::class,'login'])->name('admin.login');
 Route::post('/admin/do-login',[AdminUserController::class,'doLogin'])->name('admin.doLogin');
 
-Route::group(['prefix'=>'admin','middleware'=>'auth'],function (){
+Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
     Route::get('/', function () {
             return view('admin.pages.home');
         })->name('home');

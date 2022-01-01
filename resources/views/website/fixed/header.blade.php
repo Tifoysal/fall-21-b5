@@ -47,7 +47,7 @@
                     @if(auth()->user())
                     <!-- Button trigger modal -->
 
-                        <a href="{{route('user.logout')}}" class="btn btn-success">{{auth()->user()->name}} | Logout</a>
+                        <a href="{{route('user.logout')}}" class="btn btn-success">{{auth()->user()->name}} ({{auth()->user()->role}})| Logout</a>
 
                         @else
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registration">
