@@ -31,6 +31,12 @@ Route::post('/registration',[UserController::class,'registration'])->name('user.
 Route::post('/login',[UserController::class,'login'])->name('user.login');
 Route::get('/logout',[UserController::class,'logout'])->name('user.logout');
 
+Route::group(['middleware'=>'web_auth'],function (){
+Route::get('/add-to-cart/{id}',[OrderController::class,'addToCart'])->name('cart.add');
+Route::get('/get-cart',[OrderController::class,'getCart'])->name('cart.get');
+Route::get('/clear-cart',[OrderController::class,'clearCart'])->name('cart.clear');
+});
+
 
 Route::get('/admin/login',[AdminUserController::class,'login'])->name('admin.login');
 Route::post('/admin/do-login',[AdminUserController::class,'doLogin'])->name('admin.doLogin');

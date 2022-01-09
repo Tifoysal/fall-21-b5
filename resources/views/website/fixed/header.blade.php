@@ -39,15 +39,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">About Us</a>
                 </li>
+
+
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact Us</a>
+                    <a class="nav-link" href="{{route('cart.get')}}">Cart ({{session()->has('cart') ? count(session()->get('cart')):0}})</a>
                 </li>
                 <li class="nav-item">
 
                     @if(auth()->user())
                     <!-- Button trigger modal -->
 
-                        <a href="{{route('user.logout')}}" class="btn btn-success">{{auth()->user()->name}} ({{auth()->user()->role}})| Logout</a>
+                        <a href="{{route('user.logout')}}" class="btn btn-success">{{auth()->user()->name}} | Logout</a>
 
                         @else
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registration">

@@ -14,7 +14,7 @@
                 </a>
             </li>
 
-            @if(auth()->user()->role=='admin')
+        @if(auth()->user()->role=='admin')
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.product.list')}}">
                     <span data-feather="file"></span>
@@ -35,8 +35,7 @@
                     Category
                 </a>
             </li>
-            @endif
-
+@endif
 
         </ul>
 

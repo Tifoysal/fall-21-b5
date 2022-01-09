@@ -49,7 +49,7 @@
                                     <img style="width: 150px; height: 150px" src="{{url('uploads/products/'.$product->image)}}" alt="Item 1">
                                     <h4>{{$product->name}}</h4>
                                     <h6>BDT {{$product->price}}</h6>
-                                    <button class="btn btn-primary">Add to cart</button>
+                                    <a href="{{route('cart.add',$product->id)}}" class="btn btn-primary">Add to cart</a>
                                 </div>
                             </a>
                         @endforeach
