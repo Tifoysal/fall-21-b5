@@ -30,6 +30,7 @@
 
         </tbody>
     </table>
+    <a href="{{route('cart.checkout')}}" class="btn btn-success">Checkout</a>
     <a href="{{route('cart.clear')}}" class="btn btn-danger">Clear Cart</a>
 
     @endsection

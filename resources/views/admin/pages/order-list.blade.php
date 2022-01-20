@@ -20,29 +20,30 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
+    @foreach($orders as $key=>$order)
     <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row">{{$key+1}}</th>
+        <td>{{$order->user->name}}</td>
+        <td>{{$order->total_price}} .BDT</td>
+        <td>
+
+                {{$order->status}}
+
+        </td>
+        <td>
+            @if($order->status!='cancel')
+            <a href="{{route('admin.order.cancel',$order->id)}}" class="btn btn-danger">Cancel</a>
+            @endif
+        </td>
     </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-    </tr>
+    @endforeach
     </tbody>
 </table>
 @endsection

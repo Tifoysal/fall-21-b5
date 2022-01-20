@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
@@ -35,6 +36,7 @@ Route::group(['middleware'=>'web_auth'],function (){
 Route::get('/add-to-cart/{id}',[OrderController::class,'addToCart'])->name('cart.add');
 Route::get('/get-cart',[OrderController::class,'getCart'])->name('cart.get');
 Route::get('/clear-cart',[OrderController::class,'clearCart'])->name('cart.clear');
+Route::get('/checkout',[OrderController::class,'checkout'])->name('cart.checkout');
 });
 
 
@@ -42,13 +44,12 @@ Route::get('/admin/login',[AdminUserController::class,'login'])->name('admin.log
 Route::post('/admin/do-login',[AdminUserController::class,'doLogin'])->name('admin.doLogin');
 
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
-    Route::get('/', function () {
-            return view('admin.pages.home');
-        })->name('home');
+    Route::get('/',[DashboardController::class,'dashboard'])->name('home');
 
     Route::get('/logout',[AdminUserController::class,'logout'])->name('admin.logout');
 
     Route::get('order/list',[OrderController::class,'orderList'])->name('admin.order.list');
+    Route::get('order/cancel/{id}',[OrderController::class,'orderCancel'])->name('admin.order.cancel');
 
     //product routes
     Route::get('product-list',[ProductController::class,'productList'])->name('admin.product.list');
